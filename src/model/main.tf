@@ -19,6 +19,7 @@ locals {
 
 
 
+
 module "cnbate_traffic_manager" {
   source                 = "../module/traffic_manager_profile"
   traffic_manager_name   = var.traffic_manager_name
