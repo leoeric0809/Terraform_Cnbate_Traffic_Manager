@@ -1,7 +1,7 @@
 ########################## backend #########################
 variable "storage_account_name" {
   type        = string
-  default     = "cnbateterraformstorage"
+  default     = "cnbate-terraform-kv0208"
   description = "(required)The Azure Storage Account Name of the terraform remote Storage"
 }
 
