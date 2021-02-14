@@ -1,13 +1,14 @@
 terraform {
-  backend "azurerm" {
-    storage_account_name = var.storage_account_name
-    container_name       = var.container_name
-    key                  = var.key
+  required_version = ">= 0.14"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~>2.47.0"
+    }
   }
 }
 
 provider "azurerm" {
-  version = "~>2.0"
   features {}
 }
 
@@ -16,15 +17,12 @@ locals {
   location_southeastAsia = "Southeast Asia"
 }
 
-data "azurerm_resource_group" "cnbate_resource_group" {
-  name = var.resource_group_name
 
-}
 
 module "cnbate_traffic_manager" {
   source                 = "../module/traffic_manager_profile"
   traffic_manager_name   = var.traffic_manager_name
-  resource_group_name    = data.azurerm_resource_group.cnbate_resource_group.name
+  resource_group_name    = var.resource_group_name
   traffic_routing_method = var.traffic_routing_method
   relative_name          = var.relative_name
   ttl                    = var.ttl
@@ -41,7 +39,7 @@ module "cnbate_traffic_manager" {
 module "cnbate_Web_app" {
   source                = "../module/web_app"
   app_service_locations = [local.location_eastAsia, local.location_southeastAsia]
-  resource_group_name   = data.azurerm_resource_group.cnbate_resource_group.name
+  resource_group_name   = var.resource_group_name
 
   enable                  = var.enable
   enable_app_service_plan = var.enable_app_service_plan
