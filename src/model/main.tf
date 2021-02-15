@@ -6,6 +6,11 @@ terraform {
       version = "~>2.47.0"
     }
   }
+    backend "azurerm" {
+    storage_account_name = "cnbateterraformstorage" 
+    container_name       = "terraform-state" 
+    key                  = "cnbate.terraform.stats"
+  }
 }
 
 provider "azurerm" {

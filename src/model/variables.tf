@@ -1,22 +1,3 @@
-########################## backend #########################
-variable "storage_account_name" {
-  type        = string
-  default     = "cnbate-terraform-kv0208"
-  description = "(required)The Azure Storage Account Name of the terraform remote Storage"
-}
-
-variable "container_name" {
-  type        = string
-  default     = "terraform-state"
-  description = "(required)The Container Name for the terraform remote storage status file"
-}
-
-variable "key" {
-  type        = string
-  default     = "cnbate.terraform.stats"
-  description = "(required)The Container Key Name for terraform the remote storage status file"
-}
-
 ########################## resource group #########################
 variable "resource_group_name" {
   type        = string
